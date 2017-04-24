@@ -45,7 +45,8 @@ export function base64Md5(data) {
  */
 export function buildBaseParams(file, filePrefix) {
   var dest = file.path.replace(file.base, '');
-  dest = dest.replace(/^\//, '');
+  dest = dest.replace(/\\/g, '/');  // Windows --> Linux/S3
+  dest = dest.replace(/^\//, '');  // Remove leading /
   if (filePrefix) {
     dest = filePrefix + '/' + dest;
   }
